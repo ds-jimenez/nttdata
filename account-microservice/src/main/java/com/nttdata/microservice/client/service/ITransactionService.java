@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface ITransactionService {
     TransactionDto makeTransaction(TransactionDto dto);
-  //  List<ReportDto> getReport(Long clientId, String startDate, String endDate);
+    List<ReportDto> getReport(Long clientId, String startDate, String endDate);
 }

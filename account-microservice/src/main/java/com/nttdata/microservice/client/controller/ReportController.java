@@ -30,7 +30,7 @@ public class ReportController {
                                                    @RequestParam String endDate) {
         FormResponse response = new FormResponse();
         try {
-            List<ReportDto> result = null;// transactionService.getReport(clientId, startDate, endDate);
+            List<ReportDto> result = transactionService.getReport(clientId, startDate, endDate);
             response.setData(result);
         } catch (Exception e) {
             response.setSuccess(false);

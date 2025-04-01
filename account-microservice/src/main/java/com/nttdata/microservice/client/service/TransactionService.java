@@ -56,7 +56,7 @@ public class TransactionService implements ITransactionService{
         transactionRepository.save(Transaction);
         return dto;
     }
-  /*  public List<ReportDto> getReport(Long clientId, String startDate, String endDate) {
+   public List<ReportDto> getReport(Long clientId, String startDate, String endDate) {
         return transactionRepository.getReport(clientId, LocalDate.parse(startDate), LocalDate.parse(endDate));
-    }*/
+    }
 }

@@ -39,13 +39,13 @@ public class AccountIntegrationTest {
     public void testCreateAccountAndMakeDeposit() throws Exception {
         // Crear cuenta
         AccountDto accountDTO = new AccountDto();
-        accountDTO.setAccountNumber("999999");
+        accountDTO.setAccountNumber("999992");
         accountDTO.setType("Corriente");
         accountDTO.setInitialBalance(500);
         accountDTO.setStatus("Y");
         accountDTO.setClienteId(Long.valueOf(1));
 
-        mockMvc.perform(post("/api/accounts")
+        mockMvc.perform(post("/api/account")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(accountDTO)))
                 .andExpect(status().isOk());
@@ -53,14 +53,13 @@ public class AccountIntegrationTest {
         Account savedAccount = accountRepository.findByAccountNumber("999999").orElseThrow();
         assertThat(savedAccount.getInitialBalance()).isEqualByComparingTo(Double.valueOf("500"));
 
-        // Realizar depósito
+        // Realizar deposito
         TransactionDto deposit = new TransactionDto();
         deposit.setAccountNumber("999999");
-        deposit.setDate("2022-03-01");
         deposit.setTransactionType("DEPOSITO");
         deposit.setAmount(200);
 
-        mockMvc.perform(post("/api/transactions")
+        mockMvc.perform(post("/api/movement")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(deposit)))
                 .andExpect(status().isOk());

@@ -27,6 +27,7 @@ public class AccountService implements IAccountService{
         accountRepository.save(account);
         return dto;
     }
+
     @Override
     public List<AccountDto> findAll() {
         return accountRepository.findAll().stream()
@@ -34,25 +35,26 @@ public class AccountService implements IAccountService{
                 .collect(Collectors.toList());
     }
 
-
+    @Override
     public AccountDto findById(Long id) {
         Optional<Account> optional = accountRepository.findById(id);
         return optional.map(acc -> modelMapper.map(acc, AccountDto.class)).orElse(null);
     }
-
+    @Override
     public AccountDto update(Long id, AccountDto dto) {
         Optional<Account> optional = accountRepository.findById(id);
         if (optional.isPresent()) {
             optional.get().setInitialBalance(dto.getInitialBalance());
-            return modelMapper.map(accountRepository.save(account), AccountDto.class);
+            return dto;
         }
         return null;
     }
-
+    @Override
     public AccountDto deleteById(Long id) {
         Optional<Account> optional = accountRepository.findById(id);
         if (optional.isPresent()) {
-            optional.get().setStatus("N");
+            Account account = optional.get();
+            account.setStatus("N");
             return modelMapper.map(accountRepository.save(account), AccountDto.class);
         }
         return null;

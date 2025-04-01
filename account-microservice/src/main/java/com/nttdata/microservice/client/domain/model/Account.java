@@ -17,9 +17,6 @@ public class Account {
     @Column(length = 1, columnDefinition = "CHAR(1) DEFAULT 'Y'")
     private String status;
 
-   /* @ManyToOne
-    @JoinColumn(name = "client_id")
-    private Client client;*/
     @Column(name = "client_id")
     private Long clienteId;
 
