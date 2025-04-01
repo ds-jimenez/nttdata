@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq-container
+    ports:
+      - "15672:15672"  # Management UI
+      - "5672:5672"    # AMQP protocol
+    environment:
+      - RABBITMQ_DEFAULT_USER=nttdata
+      - RABBITMQ_DEFAULT_PASS=123456
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: nttdata
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3306:3306"
+  client-service:
+    build:
+      context: ./client-microservice
+    container_name: client-service
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/nttdata
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 123456
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: nttdata
+      SPRING_RABBITMQ_PASSWORD: 123456
+    depends_on:
+      - mysql
+      - rabbitmq
+
+  account-service:
+    build:
+      context: ./account-microservice
+    container_name: account-service
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/nttdata
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 123456
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: nttdata
+      SPRING_RABBITMQ_PASSWORD: 123456
+    depends_on:
+      - mysql
+      - rabbitmq
