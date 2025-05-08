@@ -37,7 +37,7 @@ public class AccountIntegrationTest {
 
     @Test
     public void testCreateAccountAndMakeDeposit() throws Exception {
-      /*  // Crear cuenta
+       // Crear cuenta
         AccountDto accountDTO = new AccountDto();
         accountDTO.setAccountNumber("999992");
         accountDTO.setType("Corriente");
@@ -72,6 +72,6 @@ public class AccountIntegrationTest {
                 .findFirst().orElse(null);
 
         assertThat(savedTransaction).isNotNull();
-        assertThat(savedTransaction.getAmount()).isEqualByComparingTo(Double.valueOf("200"));*/
+        assertThat(savedTransaction.getAmount()).isEqualByComparingTo(Double.valueOf("200"));
     }
 }

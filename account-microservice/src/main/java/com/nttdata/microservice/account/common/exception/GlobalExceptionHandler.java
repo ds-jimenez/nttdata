@@ -2,6 +2,7 @@ package com.nttdata.microservice.account.common.exception;
 
 import com.nttdata.microservice.account.common.ApiResponse;
 import io.swagger.v3.oas.annotations.Hidden;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -31,6 +32,18 @@ public class GlobalExceptionHandler {
                 .findFirst()
                 .orElse("Error");
         return ResponseEntity.badRequest().body(errorMsg);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ApiResponse<Void>> handleIllegalArgument(IllegalArgumentException ex) {
+        return ResponseEntity.badRequest()
+                .body(ApiResponse.failure("Invalid request: " + ex.getMessage()));
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<ApiResponse<Void>> handleEntityNotFound(EntityNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(ApiResponse.failure("Entity not found: " + ex.getMessage()));
     }
 
 }

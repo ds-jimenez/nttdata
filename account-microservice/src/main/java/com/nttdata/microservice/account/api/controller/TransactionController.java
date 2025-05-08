@@ -3,6 +3,7 @@ package com.nttdata.microservice.account.api.controller;
 import com.nttdata.microservice.account.common.ApiResponse;
 import com.nttdata.microservice.account.application.dto.TransactionDto;
 import com.nttdata.microservice.account.application.usecase.TransactionService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +19,7 @@ public class TransactionController {
     private final TransactionService transactionService;
 
     @PostMapping
-    public ResponseEntity<ApiResponse<TransactionDto>> makeMovement(@RequestBody TransactionDto dto) {
+    public ResponseEntity<ApiResponse<TransactionDto>> makeMovement(@Valid @RequestBody TransactionDto dto) {
             TransactionDto result  = transactionService.makeTransaction(dto);
             return ResponseEntity.ok(ApiResponse.success(result));
     }
