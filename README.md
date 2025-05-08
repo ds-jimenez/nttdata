@@ -34,7 +34,7 @@ docker-compose up --build
 7. MySql
 8. Docker
 
-## 🧱 Arquitectura Limpia
+##  Arquitectura Limpia
 
 La estructura del proyecto se organiza en capas claramente definidas, siguiendo los principios de Clean Architecture:
 

@@ -5,11 +5,12 @@ import com.nttdata.microservice.client.domain.model.Client;
 import com.nttdata.microservice.client.domain.model.Person;
 import com.nttdata.microservice.client.domain.repository.ClientRepository;
 import com.nttdata.microservice.client.domain.repository.PersonRepository;
-import com.nttdata.microservice.client.application.dto.ClientRequestDto;
+import com.nttdata.microservice.client.application.dto.ClientDto;
 import com.nttdata.microservice.client.infrastructure.publisher.RabbitSender;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import com.nttdata.microservice.client.common.exception.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,7 +33,7 @@ public class ClientService implements com.nttdata.microservice.client.applicatio
 
     @Override
     @Transactional
-    public ClientRequestDto save(ClientRequestDto dto) throws JsonProcessingException {
+    public ClientDto save(ClientDto dto) {
         Person person = modelMapper.map(dto, Person.class);
         person.setId(null);
         Person personSave = personRepository.save(person);
@@ -41,16 +42,21 @@ public class ClientService implements com.nttdata.microservice.client.applicatio
         client.setCliente_id(null);
         Client clientSave = clientRepository.save(client);
         dto.setClienteId(clientSave.getCliente_id().longValue());
-        rabbitSender.sendClientCreated(dto);
+        try {
+            rabbitSender.sendClientCreated(dto);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Error send message rabbit", e);
+        }
+
         return dto;
     }
 
     @Override
-    public ClientRequestDto update(Long clientId, ClientRequestDto dto) {
+    public ClientDto update(Long clientId, ClientDto dto) {
 
         Optional<Client> clientOptional = clientRepository.findById(clientId);
         if (clientOptional.isEmpty()) {
-            throw new RuntimeException("Client not found");
+            throw new ClientNotFoundException("Client with ID " + clientId + " not found");
         }
 
         Client client = clientOptional.get();
@@ -68,20 +74,20 @@ public class ClientService implements com.nttdata.microservice.client.applicatio
     }
 
     @Override
-    public ClientRequestDto findById(Long id) {
+    public Optional<ClientDto> findById(Long id) {
         Client client = modelMapper.map(clientRepository.findById(id), Client.class);
-        ClientRequestDto dto = modelMapper.map(personRepository.findById(client.getPerson().getId()), ClientRequestDto.class);
+        Optional<ClientDto> dto = Optional.ofNullable(modelMapper.map(personRepository.findById(client.getPerson().getId()), ClientDto.class));
         return dto;
     }
 
     @Override
-    public List<ClientRequestDto> findAll() {
+    public List<ClientDto> findAll() {
         List<Client> clientList = clientRepository.findAll();
 
-        List<ClientRequestDto> ClientRequestDtos = clientList.stream()
+        List<ClientDto> ClientRequestDtos = clientList.stream()
                 .map(client -> {
                     Person person = client.getPerson();
-                    ClientRequestDto clientDto = modelMapper.map(person,ClientRequestDto.class);
+                    ClientDto clientDto = modelMapper.map(person, ClientDto.class);
                     clientDto.setStatus(client.getStatus());
                     return clientDto;
                 })
@@ -91,13 +97,13 @@ public class ClientService implements com.nttdata.microservice.client.applicatio
     }
 
     @Override
-    public ClientRequestDto deleteById(Long clientId) {
+    public boolean deleteById(Long clientId) {
         Optional<Client> existingClient = clientRepository.findById(clientId);
         if (existingClient.isPresent()) {
             Client updatedClient = existingClient.get();
             updatedClient.setStatus("N");
             Client clientSave = clientRepository.save(updatedClient);
-            return modelMapper.map(clientSave, ClientRequestDto.class);
+            return true;
         } else {
             throw new RuntimeException("Client not found");
         }

@@ -2,7 +2,7 @@ package com.nttdata.microservice.client.api.controller;
 
 import com.nttdata.microservice.client.application.usecase.ClientService;
 import com.nttdata.microservice.client.common.ApiResponse;
-import com.nttdata.microservice.client.application.dto.ClientRequestDto;
+import com.nttdata.microservice.client.application.dto.ClientDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,60 +17,35 @@ public class ClientController {
     private final ClientService clientService;
 
     @PostMapping
-    public ResponseEntity<ApiResponse<ClientRequestDto>> createClient(@RequestBody ClientRequestDto client) {
-        try {
-            ClientRequestDto newClient = clientService.save(client);
+    public ResponseEntity<ApiResponse<ClientDto>> createClient(@RequestBody ClientDto client) {
+            ClientDto newClient = clientService.save(client);
             return ResponseEntity.ok(ApiResponse.success(newClient));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(ApiResponse.failure("Unexpected error"));
-        }
     }
 
     @GetMapping("/{clientId}")
-    public ResponseEntity<ApiResponse<ClientRequestDto>> getClient(@PathVariable Long clientId) {
-        try {
-            ClientRequestDto client = clientService.findById(clientId);
-            return ResponseEntity.ok(ApiResponse.success(client));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(ApiResponse.failure("Unexpected error"));
-        }
+    public ResponseEntity<ApiResponse<ClientDto>> getClient(@PathVariable Long clientId) {
+            return clientService.findById(clientId).map(dto -> ResponseEntity.ok(ApiResponse.success(dto)))
+                    .orElseGet(() -> ResponseEntity
+                            .status(HttpStatus.NOT_FOUND)
+                            .body(ApiResponse.failure("Client not found")));
 
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<ClientRequestDto>>> getAllClients() {
-        try {
-            List<ClientRequestDto> clients = clientService.findAll();
+    public ResponseEntity<ApiResponse<List<ClientDto>>> getAllClients() {
+            List<ClientDto> clients = clientService.findAll();
             return ResponseEntity.ok(ApiResponse.success(clients));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(ApiResponse.failure("Unexpected error"));
-        }
     }
 
     @PutMapping("/{clientId}")
-    public ResponseEntity<ApiResponse<ClientRequestDto>> updateClient(@PathVariable Long clientId, @RequestBody ClientRequestDto clientRequestDto) {
-        try {
-            ClientRequestDto updatedClient = clientService.update(clientId, clientRequestDto);
+    public ResponseEntity<ApiResponse<ClientDto>> updateClient(@PathVariable Long clientId, @RequestBody ClientDto clientRequestDto) {
+            ClientDto updatedClient = clientService.update(clientId, clientRequestDto);
             return ResponseEntity.ok(ApiResponse.success(updatedClient));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(ApiResponse.failure("Unexpected error"));
-        }
-
-
     }
 
     @DeleteMapping("/{clientId}")
     public ResponseEntity<Void> deleteClient(@PathVariable Long clientId) {
-        try {
-            clientService.deleteById(clientId);
-            return ResponseEntity.noContent().build();
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+            return clientService.deleteById(clientId) ? ResponseEntity.noContent().build() : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
 }

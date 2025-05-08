@@ -1,7 +1,7 @@
 package com.nttdata.microservice.client;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.nttdata.microservice.client.application.dto.ClientRequestDto;
+import com.nttdata.microservice.client.application.dto.ClientDto;
 import com.nttdata.microservice.client.application.usecase.ClientService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ class ClientApplicationTests {
 
     @Test
 	public void testClientCreation() throws JsonProcessingException {
-		ClientRequestDto dto = new ClientRequestDto();
+		ClientDto dto = new ClientDto();
 		dto.setName("Catherine");
 		dto.setIdentification("0R59");
 		dto.setAddress("");
@@ -30,7 +30,7 @@ class ClientApplicationTests {
 		dto.setInitialBalance(20);
 		dto.setClienteId(0L);
 
-		ClientRequestDto clientSave = clientService.save(dto);
+		ClientDto clientSave = clientService.save(dto);
 		assertEquals("Catherine", clientSave.getName());
 		assertEquals("secret", clientSave.getPassword());
 		assertEquals("Y", clientSave.getStatus());
