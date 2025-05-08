@@ -1,8 +1,8 @@
 {
 	"info": {
-		"_postman_id": "070c9d0a-a465-4e41-9beb-8c8c99babc50",
+		"_postman_id": "33adae9f-355a-4f85-a099-76d3e80c98ac",
 		"name": "Account Service API",
-		"description": "API documentation for client-service",
+		"description": "API documentation for account-microservice",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "1765396"
 	},
@@ -529,7 +529,7 @@
 										}
 									],
 									"cookie": [],
-									"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": [\n    {\n      \"fecha\": \"<dateTime>\",\n      \"cliente\": \"<string>\",\n      \"tipo\": \"<string>\",\n      \"estado\": \"<string>\",\n      \"saldoInicial\": \"<double>\",\n      \"saldoDisponible\": \"<double>\",\n      \"numeroCuenta\": \"<string>\",\n      \"movimiento\": \"<double>\"\n    },\n    {\n      \"fecha\": \"<dateTime>\",\n      \"cliente\": \"<string>\",\n      \"tipo\": \"<string>\",\n      \"estado\": \"<string>\",\n      \"saldoInicial\": \"<double>\",\n      \"saldoDisponible\": \"<double>\",\n      \"numeroCuenta\": \"<string>\",\n      \"movimiento\": \"<double>\"\n    }\n  ],\n  \"error\": \"<string>\"\n}"
+									"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": [\n    {\n      \"cliente\": \"<string>\",\n      \"tipo\": \"<string>\",\n      \"estado\": \"<string>\",\n      \"fecha\": \"<dateTime>\",\n      \"saldoInicial\": \"<double>\",\n      \"numeroCuenta\": \"<string>\",\n      \"movimiento\": \"<double>\",\n      \"saldoDisponible\": \"<double>\"\n    },\n    {\n      \"cliente\": \"<string>\",\n      \"tipo\": \"<string>\",\n      \"estado\": \"<string>\",\n      \"fecha\": \"<dateTime>\",\n      \"saldoInicial\": \"<double>\",\n      \"numeroCuenta\": \"<string>\",\n      \"movimiento\": \"<double>\",\n      \"saldoDisponible\": \"<double>\"\n    }\n  ],\n  \"error\": \"<string>\"\n}"
 								}
 							]
 						}
