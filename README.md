@@ -34,12 +34,7 @@ docker-compose up --build
 7. MySql
 8. Docker
 
-<<<<<<< HEAD
 ##  Arquitectura Limpia
-=======
-## Arquitectura Limpia
->>>>>>> 27750ee67cba2ecfccab7eb3a5cecda8ce7397c6
-
 La estructura del proyecto se organiza en capas claramente definidas, siguiendo los principios de Clean Architecture:
 
 ### client-microservice
