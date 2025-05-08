@@ -1,5 +1,5 @@
 # Usa imagen base con Java 21
-FROM eclipse-temurin:21-jdk as builder
+FROM eclipse-temurin:21-jdk-alpine as builder
 
 # Directorio de trabajo para la app
 WORKDIR /app

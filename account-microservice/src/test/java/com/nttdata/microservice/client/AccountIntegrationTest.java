@@ -4,10 +4,10 @@ package com.nttdata.microservice.client;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nttdata.microservice.client.domain.model.Account;
 import com.nttdata.microservice.client.domain.model.Transaction;
-import com.nttdata.microservice.client.domain.repository.IAccountRepository;
-import com.nttdata.microservice.client.domain.repository.ITransactionRepository;
-import com.nttdata.microservice.client.dto.AccountDto;
-import com.nttdata.microservice.client.dto.TransactionDto;
+import com.nttdata.microservice.client.domain.repository.AccountRepository;
+import com.nttdata.microservice.client.domain.repository.TransactionRepository;
+import com.nttdata.microservice.client.application.dto.AccountDto;
+import com.nttdata.microservice.client.application.dto.TransactionDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -27,10 +27,10 @@ public class AccountIntegrationTest {
     private MockMvc mockMvc;
 
     @Autowired
-    private IAccountRepository accountRepository;
+    private AccountRepository accountRepository;
 
     @Autowired
-    private ITransactionRepository transactionRepository;
+    private TransactionRepository transactionRepository;
 
     @Autowired
     private ObjectMapper objectMapper;

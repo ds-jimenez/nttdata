@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "536a7cc9-1f00-40ef-9157-c44354a464f1",
+		"_postman_id": "220fdee5-57a8-4849-b53e-eb9e7a21cbf3",
 		"name": "Client Service API",
 		"description": "API documentation for client-service",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "1765396"
 	},
 	"item": [
@@ -11,13 +11,13 @@
 			"name": "api",
 			"item": [
 				{
-					"name": "client",
+					"name": "account",
 					"item": [
 						{
-							"name": "{clientId}",
+							"name": "{id}",
 							"item": [
 								{
-									"name": "get Client",
+									"name": "get Account By Id",
 									"request": {
 										"method": "GET",
 										"header": [
@@ -27,18 +27,18 @@
 											}
 										],
 										"url": {
-											"raw": "{{baseUrl}}/api/client/:clientId",
+											"raw": "{{baseUrl}}/api/account/:id",
 											"host": [
 												"{{baseUrl}}"
 											],
 											"path": [
 												"api",
-												"client",
-												":clientId"
+												"account",
+												":id"
 											],
 											"variable": [
 												{
-													"key": "clientId",
+													"key": "id",
 													"value": "<long>",
 													"description": "(Required) "
 												}
@@ -57,18 +57,18 @@
 													}
 												],
 												"url": {
-													"raw": "{{baseUrl}}/api/client/:clientId",
+													"raw": "{{baseUrl}}/api/account/:id",
 													"host": [
 														"{{baseUrl}}"
 													],
 													"path": [
 														"api",
-														"client",
-														":clientId"
+														"account",
+														":id"
 													],
 													"variable": [
 														{
-															"key": "clientId"
+															"key": "id"
 														}
 													]
 												}
@@ -83,12 +83,12 @@
 												}
 											],
 											"cookie": [],
-											"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {},\n  \"error\": \"<string>\"\n}"
+											"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {\n    \"accountNumber\": \"<string>\",\n    \"type\": \"<string>\",\n    \"initialBalance\": \"<double>\",\n    \"status\": \"<string>\",\n    \"clienteId\": \"<long>\"\n  },\n  \"error\": \"<string>\"\n}"
 										}
 									]
 								},
 								{
-									"name": "update Client",
+									"name": "update Account",
 									"request": {
 										"method": "PUT",
 										"header": [
@@ -103,7 +103,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n  \"name\": \"<string>\",\n  \"identification\": \"<string>\",\n  \"address\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"password\": \"<string>\",\n  \"status\": \"<string>\",\n  \"accountNumber\": \"<string>\",\n  \"type\": \"<string>\",\n  \"initialBalance\": \"<double>\",\n  \"clienteId\": \"<long>\"\n}",
+											"raw": "{\n  \"accountNumber\": \"<string>\",\n  \"type\": \"<string>\",\n  \"initialBalance\": \"<double>\",\n  \"status\": \"<string>\",\n  \"clienteId\": \"<long>\"\n}",
 											"options": {
 												"raw": {
 													"headerFamily": "json",
@@ -112,18 +112,18 @@
 											}
 										},
 										"url": {
-											"raw": "{{baseUrl}}/api/client/:clientId",
+											"raw": "{{baseUrl}}/api/account/:id",
 											"host": [
 												"{{baseUrl}}"
 											],
 											"path": [
 												"api",
-												"client",
-												":clientId"
+												"account",
+												":id"
 											],
 											"variable": [
 												{
-													"key": "clientId",
+													"key": "id",
 													"value": "<long>",
 													"description": "(Required) "
 												}
@@ -147,7 +147,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n  \"name\": \"<string>\",\n  \"identification\": \"<string>\",\n  \"address\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"password\": \"<string>\",\n  \"status\": \"<string>\",\n  \"accountNumber\": \"<string>\",\n  \"type\": \"<string>\",\n  \"initialBalance\": \"<double>\",\n  \"clienteId\": \"<long>\"\n}",
+													"raw": "{\n  \"accountNumber\": \"<string>\",\n  \"type\": \"<string>\",\n  \"initialBalance\": \"<double>\",\n  \"status\": \"<string>\",\n  \"clienteId\": \"<long>\"\n}",
 													"options": {
 														"raw": {
 															"headerFamily": "json",
@@ -156,18 +156,18 @@
 													}
 												},
 												"url": {
-													"raw": "{{baseUrl}}/api/client/:clientId",
+													"raw": "{{baseUrl}}/api/account/:id",
 													"host": [
 														"{{baseUrl}}"
 													],
 													"path": [
 														"api",
-														"client",
-														":clientId"
+														"account",
+														":id"
 													],
 													"variable": [
 														{
-															"key": "clientId"
+															"key": "id"
 														}
 													]
 												}
@@ -182,28 +182,33 @@
 												}
 											],
 											"cookie": [],
-											"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {},\n  \"error\": \"<string>\"\n}"
+											"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {\n    \"accountNumber\": \"<string>\",\n    \"type\": \"<string>\",\n    \"initialBalance\": \"<double>\",\n    \"status\": \"<string>\",\n    \"clienteId\": \"<long>\"\n  },\n  \"error\": \"<string>\"\n}"
 										}
 									]
 								},
 								{
-									"name": "delete Client",
+									"name": "delete Account",
 									"request": {
 										"method": "DELETE",
-										"header": [],
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
 										"url": {
-											"raw": "{{baseUrl}}/api/client/:clientId",
+											"raw": "{{baseUrl}}/api/account/:id",
 											"host": [
 												"{{baseUrl}}"
 											],
 											"path": [
 												"api",
-												"client",
-												":clientId"
+												"account",
+												":id"
 											],
 											"variable": [
 												{
-													"key": "clientId",
+													"key": "id",
 													"value": "<long>",
 													"description": "(Required) "
 												}
@@ -215,20 +220,25 @@
 											"name": "OK",
 											"originalRequest": {
 												"method": "DELETE",
-												"header": [],
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
 												"url": {
-													"raw": "{{baseUrl}}/api/client/:clientId",
+													"raw": "{{baseUrl}}/api/account/:id",
 													"host": [
 														"{{baseUrl}}"
 													],
 													"path": [
 														"api",
-														"client",
-														":clientId"
+														"account",
+														":id"
 													],
 													"variable": [
 														{
-															"key": "clientId"
+															"key": "id"
 														}
 													]
 												}
@@ -236,16 +246,21 @@
 											"status": "OK",
 											"code": 200,
 											"_postman_previewlanguage": "text",
-											"header": [],
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
 											"cookie": [],
-											"body": ""
+											"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {\n    \"accountNumber\": \"<string>\",\n    \"type\": \"<string>\",\n    \"initialBalance\": \"<double>\",\n    \"status\": \"<string>\",\n    \"clienteId\": \"<long>\"\n  },\n  \"error\": \"<string>\"\n}"
 										}
 									]
 								}
 							]
 						},
 						{
-							"name": "get All Clients",
+							"name": "get All Accounts",
 							"request": {
 								"method": "GET",
 								"header": [
@@ -254,16 +269,7 @@
 										"value": "*/*"
 									}
 								],
-								"url": {
-									"raw": "{{baseUrl}}/api/client",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"client"
-									]
-								}
+								"url": "{{baseUrl}}/api/account"
 							},
 							"response": [
 								{
@@ -276,16 +282,7 @@
 												"value": "*/*"
 											}
 										],
-										"url": {
-											"raw": "{{baseUrl}}/api/client",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"api",
-												"client"
-											]
-										}
+										"url": "{{baseUrl}}/api/account"
 									},
 									"status": "OK",
 									"code": 200,
@@ -297,12 +294,12 @@
 										}
 									],
 									"cookie": [],
-									"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {},\n  \"error\": \"<string>\"\n}"
+									"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": [\n    {\n      \"accountNumber\": \"<string>\",\n      \"type\": \"<string>\",\n      \"initialBalance\": \"<double>\",\n      \"status\": \"<string>\",\n      \"clienteId\": \"<long>\"\n    },\n    {\n      \"accountNumber\": \"<string>\",\n      \"type\": \"<string>\",\n      \"initialBalance\": \"<double>\",\n      \"status\": \"<string>\",\n      \"clienteId\": \"<long>\"\n    }\n  ],\n  \"error\": \"<string>\"\n}"
 								}
 							]
 						},
 						{
-							"name": "create Client",
+							"name": "create Account",
 							"request": {
 								"method": "POST",
 								"header": [
@@ -317,7 +314,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"name\": \"<string>\",\n  \"identification\": \"<string>\",\n  \"address\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"password\": \"<string>\",\n  \"status\": \"<string>\",\n  \"accountNumber\": \"<string>\",\n  \"type\": \"<string>\",\n  \"initialBalance\": \"<double>\",\n  \"clienteId\": \"<long>\"\n}",
+									"raw": "{\n  \"accountNumber\": \"<string>\",\n  \"type\": \"<string>\",\n  \"initialBalance\": \"<double>\",\n  \"status\": \"<string>\",\n  \"clienteId\": \"<long>\"\n}",
 									"options": {
 										"raw": {
 											"headerFamily": "json",
@@ -325,16 +322,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "{{baseUrl}}/api/client",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"client"
-									]
-								}
+								"url": "{{baseUrl}}/api/account"
 							},
 							"response": [
 								{
@@ -353,7 +341,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n  \"name\": \"<string>\",\n  \"identification\": \"<string>\",\n  \"address\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"password\": \"<string>\",\n  \"status\": \"<string>\",\n  \"accountNumber\": \"<string>\",\n  \"type\": \"<string>\",\n  \"initialBalance\": \"<double>\",\n  \"clienteId\": \"<long>\"\n}",
+											"raw": "{\n  \"accountNumber\": \"<string>\",\n  \"type\": \"<string>\",\n  \"initialBalance\": \"<double>\",\n  \"status\": \"<string>\",\n  \"clienteId\": \"<long>\"\n}",
 											"options": {
 												"raw": {
 													"headerFamily": "json",
@@ -361,14 +349,173 @@
 												}
 											}
 										},
+										"url": "{{baseUrl}}/api/account"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {\n    \"accountNumber\": \"<string>\",\n    \"type\": \"<string>\",\n    \"initialBalance\": \"<double>\",\n    \"status\": \"<string>\",\n    \"clienteId\": \"<long>\"\n  },\n  \"error\": \"<string>\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "movement",
+					"item": [
+						{
+							"name": "make Movement",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"accountNumber\": \"<string>\",\n  \"transactionType\": \"<string>\",\n  \"amount\": \"<double>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/api/movement"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"accountNumber\": \"<string>\",\n  \"transactionType\": \"<string>\",\n  \"amount\": \"<double>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseUrl}}/api/movement"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {\n    \"accountNumber\": \"<string>\",\n    \"transactionType\": \"<string>\",\n    \"amount\": \"<double>\"\n  },\n  \"error\": \"<string>\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "reports",
+					"item": [
+						{
+							"name": "Get transactions report by client and date range",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/reports?clientId=<long>&startDate=<string>&endDate=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"reports"
+									],
+									"query": [
+										{
+											"key": "clientId",
+											"value": "<long>",
+											"description": "(Required) "
+										},
+										{
+											"key": "startDate",
+											"value": "<string>",
+											"description": "(Required) "
+										},
+										{
+											"key": "endDate",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
 										"url": {
-											"raw": "{{baseUrl}}/api/client",
+											"raw": "{{baseUrl}}/api/reports?clientId=<long>&startDate=<string>&endDate=<string>",
 											"host": [
 												"{{baseUrl}}"
 											],
 											"path": [
 												"api",
-												"client"
+												"reports"
+											],
+											"query": [
+												{
+													"key": "clientId",
+													"value": "<long>",
+													"description": "(Required) "
+												},
+												{
+													"key": "startDate",
+													"value": "<string>",
+													"description": "(Required) "
+												},
+												{
+													"key": "endDate",
+													"value": "<string>",
+													"description": "(Required) "
+												}
 											]
 										}
 									},
@@ -382,7 +529,7 @@
 										}
 									],
 									"cookie": [],
-									"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {},\n  \"error\": \"<string>\"\n}"
+									"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": [\n    {\n      \"fecha\": \"<dateTime>\",\n      \"cliente\": \"<string>\",\n      \"tipo\": \"<string>\",\n      \"estado\": \"<string>\",\n      \"saldoInicial\": \"<double>\",\n      \"saldoDisponible\": \"<double>\",\n      \"numeroCuenta\": \"<string>\",\n      \"movimiento\": \"<double>\"\n    },\n    {\n      \"fecha\": \"<dateTime>\",\n      \"cliente\": \"<string>\",\n      \"tipo\": \"<string>\",\n      \"estado\": \"<string>\",\n      \"saldoInicial\": \"<double>\",\n      \"saldoDisponible\": \"<double>\",\n      \"numeroCuenta\": \"<string>\",\n      \"movimiento\": \"<double>\"\n    }\n  ],\n  \"error\": \"<string>\"\n}"
 								}
 							]
 						}
@@ -394,7 +541,7 @@
 	"variable": [
 		{
 			"key": "baseUrl",
-			"value": "http://localhost:8081"
+			"value": "http://localhost:8082"
 		}
 	]
 }

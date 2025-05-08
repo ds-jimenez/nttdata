@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "ac18cbdb-8920-4ddc-9d18-691487401a4a",
-		"name": "Account Service API Copy",
+		"_postman_id": "070c9d0a-a465-4e41-9beb-8c8c99babc50",
+		"name": "Account Service API",
 		"description": "API documentation for client-service",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "1765396"
 	},
 	"item": [
@@ -83,7 +83,7 @@
 												}
 											],
 											"cookie": [],
-											"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {},\n  \"error\": \"<string>\"\n}"
+											"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {\n    \"accountNumber\": \"<string>\",\n    \"type\": \"<string>\",\n    \"initialBalance\": \"<double>\",\n    \"status\": \"<string>\",\n    \"clienteId\": \"<long>\"\n  },\n  \"error\": \"<string>\"\n}"
 										}
 									]
 								},
@@ -182,7 +182,7 @@
 												}
 											],
 											"cookie": [],
-											"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {},\n  \"error\": \"<string>\"\n}"
+											"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {\n    \"accountNumber\": \"<string>\",\n    \"type\": \"<string>\",\n    \"initialBalance\": \"<double>\",\n    \"status\": \"<string>\",\n    \"clienteId\": \"<long>\"\n  },\n  \"error\": \"<string>\"\n}"
 										}
 									]
 								},
@@ -253,7 +253,7 @@
 												}
 											],
 											"cookie": [],
-											"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {},\n  \"error\": \"<string>\"\n}"
+											"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {\n    \"accountNumber\": \"<string>\",\n    \"type\": \"<string>\",\n    \"initialBalance\": \"<double>\",\n    \"status\": \"<string>\",\n    \"clienteId\": \"<long>\"\n  },\n  \"error\": \"<string>\"\n}"
 										}
 									]
 								}
@@ -269,16 +269,7 @@
 										"value": "*/*"
 									}
 								],
-								"url": {
-									"raw": "{{baseUrl}}/api/account",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"account"
-									]
-								}
+								"url": "{{baseUrl}}/api/account"
 							},
 							"response": [
 								{
@@ -291,16 +282,7 @@
 												"value": "*/*"
 											}
 										],
-										"url": {
-											"raw": "{{baseUrl}}/api/account",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"api",
-												"account"
-											]
-										}
+										"url": "{{baseUrl}}/api/account"
 									},
 									"status": "OK",
 									"code": 200,
@@ -312,7 +294,7 @@
 										}
 									],
 									"cookie": [],
-									"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {},\n  \"error\": \"<string>\"\n}"
+									"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": [\n    {\n      \"accountNumber\": \"<string>\",\n      \"type\": \"<string>\",\n      \"initialBalance\": \"<double>\",\n      \"status\": \"<string>\",\n      \"clienteId\": \"<long>\"\n    },\n    {\n      \"accountNumber\": \"<string>\",\n      \"type\": \"<string>\",\n      \"initialBalance\": \"<double>\",\n      \"status\": \"<string>\",\n      \"clienteId\": \"<long>\"\n    }\n  ],\n  \"error\": \"<string>\"\n}"
 								}
 							]
 						},
@@ -340,16 +322,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "{{baseUrl}}/api/account",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"account"
-									]
-								}
+								"url": "{{baseUrl}}/api/account"
 							},
 							"response": [
 								{
@@ -376,16 +349,7 @@
 												}
 											}
 										},
-										"url": {
-											"raw": "{{baseUrl}}/api/account",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"api",
-												"account"
-											]
-										}
+										"url": "{{baseUrl}}/api/account"
 									},
 									"status": "OK",
 									"code": 200,
@@ -397,7 +361,7 @@
 										}
 									],
 									"cookie": [],
-									"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {},\n  \"error\": \"<string>\"\n}"
+									"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {\n    \"accountNumber\": \"<string>\",\n    \"type\": \"<string>\",\n    \"initialBalance\": \"<double>\",\n    \"status\": \"<string>\",\n    \"clienteId\": \"<long>\"\n  },\n  \"error\": \"<string>\"\n}"
 								}
 							]
 						}
@@ -430,16 +394,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "{{baseUrl}}/api/movement",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"movement"
-									]
-								}
+								"url": "{{baseUrl}}/api/movement"
 							},
 							"response": [
 								{
@@ -466,16 +421,7 @@
 												}
 											}
 										},
-										"url": {
-											"raw": "{{baseUrl}}/api/movement",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"api",
-												"movement"
-											]
-										}
+										"url": "{{baseUrl}}/api/movement"
 									},
 									"status": "OK",
 									"code": 200,
@@ -487,7 +433,7 @@
 										}
 									],
 									"cookie": [],
-									"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {},\n  \"error\": \"<string>\"\n}"
+									"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {\n    \"accountNumber\": \"<string>\",\n    \"transactionType\": \"<string>\",\n    \"amount\": \"<double>\"\n  },\n  \"error\": \"<string>\"\n}"
 								}
 							]
 						}
@@ -583,7 +529,7 @@
 										}
 									],
 									"cookie": [],
-									"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {},\n  \"error\": \"<string>\"\n}"
+									"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": [\n    {\n      \"fecha\": \"<dateTime>\",\n      \"cliente\": \"<string>\",\n      \"tipo\": \"<string>\",\n      \"estado\": \"<string>\",\n      \"saldoInicial\": \"<double>\",\n      \"saldoDisponible\": \"<double>\",\n      \"numeroCuenta\": \"<string>\",\n      \"movimiento\": \"<double>\"\n    },\n    {\n      \"fecha\": \"<dateTime>\",\n      \"cliente\": \"<string>\",\n      \"tipo\": \"<string>\",\n      \"estado\": \"<string>\",\n      \"saldoInicial\": \"<double>\",\n      \"saldoDisponible\": \"<double>\",\n      \"numeroCuenta\": \"<string>\",\n      \"movimiento\": \"<double>\"\n    }\n  ],\n  \"error\": \"<string>\"\n}"
 								}
 							]
 						}

@@ -1,11 +1,8 @@
 package com.nttdata.microservice.client;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.nttdata.microservice.client.domain.model.Client;
-import com.nttdata.microservice.client.domain.model.Person;
-import com.nttdata.microservice.client.domain.repository.IClientRepository;
-import com.nttdata.microservice.client.dto.ClientRequestDto;
-import com.nttdata.microservice.client.service.IClientService;
+import com.nttdata.microservice.client.application.dto.ClientRequestDto;
+import com.nttdata.microservice.client.application.usecase.ClientService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class ClientApplicationTests {
 	@Autowired
-	private  IClientService clientService;
+	private ClientService clientService;
 
 
     @Test
