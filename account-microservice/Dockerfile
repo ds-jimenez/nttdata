@@ -11,7 +11,7 @@ COPY . .
 RUN chmod +x mvnw && ./mvnw clean package -DskipTests
 
 # ----------- IMAGEN FINAL -------------
-FROM eclipse-temurin:21-jdk
+FROM eclipse-temurin:21-jdk-alpine
 
 # Directorio de trabajo en la imagen final
 WORKDIR /app
