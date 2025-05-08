@@ -22,3 +22,62 @@ Este proyecto contiene dos microservicios: **Client Service** y **Account Servic
 
 ```bash
 docker-compose up --build
+```
+
+## Tecnologías
+1. Java 21
+2. Spring Boot
+3. RabbitMQ
+4. ModelMapper
+5. Swagger OpenAPI
+6. Maven
+7. MySql
+8. Docker
+
+## 🧱 Arquitectura Limpia
+
+La estructura del proyecto se organiza en capas claramente definidas, siguiendo los principios de Clean Architecture:
+
+### client-microservice
+
+```plaintext
+src/main/java/com/nttdata/microservice/client/
+├── api/                  # Capa de entrada: controladores REST
+│   └── controller/
+├── application/          # Casos de uso y DTOs
+│   ├── dto/
+│   └── usecase/          # Interfaces de servicios de aplicación
+├── domain/               # Modelo de negocio y repositorios (puertos)
+│   ├── model/
+│   └── repository/
+├── infrastructure/       # Adaptadores: base de datos, mensajería, etc.
+│   ├── publisher/        # Publicación de eventos (RabbitMQ)
+│   └── service/          # Implementaciones concretas de casos de uso
+├── common/               # Clases compartidas (ej. ApiResponse)
+├── config/               # Configuraciones de Spring Boot
+└── ClientApplication.java  # Clase principal
+
+```
+### account-microservice
+```plaintext
+src/main/java/com/nttdata/microservice/account/
+├── api/                  
+│   ├── controller/        # Controladores REST (Account, Transaction, Report)
+│   └── dto/               # DTOs de entrada/salida para la API
+├── application/
+│   ├── dto/               # DTOs internos de la lógica de aplicación
+│   └── usecase/           # Interfaces de servicios de aplicación (casos de uso)
+├── domain/
+│   ├── model/             # Entidades del dominio: Account, Transaction, Client, Person
+│   └── repository/        # Interfaces de persistencia (puertos de salida)
+├── infrastructure/
+│   ├── service/           # Implementaciones concretas de los casos de uso
+│   └── event/
+│       └── consumer/      # Componentes que reciben eventos (RabbitMQ)
+├── common/               
+│   └── FormResponse.java  # Wrapper de respuesta estándar
+├── config/               
+│   ├── RabbitMQConfig.java
+│   ├── ModelMapperConfig.java
+│   └── SwaggerConfig.java
+└── AccountApplication.java  # Clase principal del microservicio
